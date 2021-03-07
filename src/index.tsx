@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Counter} from "./Counter/Counter";
+import { Settings } from './Settings/Settings';
+import {store} from "./Store/store";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <div className={"wrapper"}>
+            <Settings/>
+            <Counter startingValue={store.startingValue}  maxValue={store.maxValue}/>
+        </div>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

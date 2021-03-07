@@ -1,0 +1,62 @@
+
+.counter {
+    background-color: #1A595C;
+    border: 1px solid black;
+    border-radius: 1px;
+    margin: 50px auto;
+    width: 350px;
+    height: 250px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.screen {
+    display: flex;
+    border: 1px solid black;
+    width: 70%;
+    height: 50%;
+    background-color: #38CDD5;
+    margin-top: 10px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen p {
+    font-size: 55px;
+    text-align: center;
+}
+
+.values {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.values input {
+    width: 50%;
+    margin-left: 10px;
+}
+
+.control button {
+    background-color: #38CDD5;
+    margin: 10px 10px 5px;
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    border: 1px solid black;
+
+}
+
+.control button:hover {
+    background-color: #19AFB7;
+}
+
+.error {
+    color: red;
+}
