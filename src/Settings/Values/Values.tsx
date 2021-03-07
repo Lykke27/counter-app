@@ -1,23 +1,20 @@
 import React, {ChangeEvent, useState} from "react";
+import {store} from "../../Store/store";
 
 type ValuesPropsType = {
-    // onClick: () => void
-    // disabled: boolean
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void
+    value: number
     title: string
 }
 
 export const Values = (props: ValuesPropsType) => {
     // const onClick = () => props.onClick()
-    const [value, setValue] = useState('0')
 
-    const changeValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value)
-    }
 
     return (
         <span>
             {props.title}
-            <input type={"number"} onChange={changeValue} value={value}></input>
+            <input type={"number"} onChange={props.onChange} value={props.value}/>
         </span>
     )
 }
