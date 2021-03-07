@@ -1,7 +1,6 @@
-
 .counter {
     background-color: #1A595C;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 1px;
     margin: 50px auto;
     width: 350px;
@@ -15,7 +14,7 @@
 
 .screen {
     display: flex;
-    border: 1px solid black;
+    border: 2px solid black;
     width: 70%;
     height: 50%;
     background-color: #38CDD5;
@@ -28,6 +27,7 @@
 .screen p {
     font-size: 55px;
     text-align: center;
+    font-weight: bold;
 }
 
 .values {
@@ -39,8 +39,8 @@
 }
 
 .values input {
-    width: 50%;
-    margin-left: 10px;
+    width: 40%;
+    margin: 0 10px;
 }
 
 .control button {
@@ -49,14 +49,31 @@
     width: 80px;
     height: 50px;
     text-align: center;
-    border: 1px solid black;
-
+    border: 2px solid black;
+    font-weight: bold;
+    font-size: 25px;
+    outline: none;
+    opacity: 0.8;
 }
 
 .control button:hover {
-    background-color: #19AFB7;
+    transition-duration: 0.3s;
+    background-color: #2cd9de;
+    /*background-color: #1a9ea4;*/
+    opacity: 1;
+    border: 2px solid black;
 }
 
 .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: larger;
+    font-weight: bold;
     color: red;
+}
+
+.error input {
+    width: 40%;
+    margin: 0 10px;
 }
