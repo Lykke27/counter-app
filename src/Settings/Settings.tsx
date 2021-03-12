@@ -2,40 +2,51 @@ import React, {ChangeEvent, useState} from "react";
 import {Button} from "../Button";
 import "../Counter/Counter.css"
 import {Values} from "./Values/Values";
-import {store} from "../Store/store";
+import s from "./Settings.module.css"
 
-export const Settings = () => {
-    const [maxValue, setMaxValue] = useState(5)
-    const [startValue, setStartValue] = useState(0)
+export type StateType = {
+    minValue: number
+    maxValue: number
+    count: number
+    setNewSettings: (a: number, b: number) => void
+    error: boolean
+    setErrorMessage: () => void
+}
 
-    const newMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        // @ts-ignore
-        setMaxValue(e.currentTarget.value)
+export const Settings = (props: StateType) => {
+    const [maxValue, setMaxValue] = useState(props.maxValue)
+    const [minValue, setMinValue] = useState(props.minValue)
+
+
+    const onChangeForMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        props.setErrorMessage();
+        let newMaxValue = Number.parseInt(e.currentTarget.value)
+        setMaxValue(newMaxValue)
     }
 
-    const newStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        // @ts-ignore
-        setStartValue(e.currentTarget.value)
+    const onChangeForMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+        props.setErrorMessage();
+        let newMinValue = Number.parseInt(e.currentTarget.value)
+        setMinValue(newMinValue)
     }
 
-    const setNewSettings = () => {
-        debugger
-        store.maxValue = maxValue
-        store.startingValue= startValue
+    const setSettings = () => {
+        props.setNewSettings(maxValue, minValue)
     }
 
     return (
         <div className="counter">
             <div className="screen">
-                <div className={maxValue <= startValue ? "error" : "values"}>
-                    <Values title={"max value"} onChange={newMaxValue} value={maxValue}/>
-                    <Values title={"start value"} onChange={newStartValue} value={startValue}/>
+                <div className={s.values}>
+                    <Values title={"max value"} onChange={onChangeForMaxValue} value={maxValue}/>
+                    <Values title={"start value"} onChange={onChangeForMinValue} value={minValue}/>
                 </div>
             </div>
             <div className="control">
-                <Button onClick={setNewSettings}
-                        disabled={maxValue <= startValue ? true : false}
-                        title='set'
+                <Button
+                    onClick={setSettings}
+                    disabled={props.maxValue <= props.minValue ? true : false}
+                    title='set'
                 />
             </div>
         </div>

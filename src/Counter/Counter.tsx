@@ -1,37 +1,33 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button} from "../Button";
 import "./Counter.css"
-import {store, storePropsType} from "../Store/store";
 
+export type StateType = {
+    maxValue: number
+    minValue: number
+    count: number
+    increment: () => void
+    reset: () => void
+    error: boolean
+}
 
-export const Counter = (props: storePropsType) => {
-    const [count, setCount] = useState<number>(props.startingValue);
-
-    const increment = () => {
-        if (count !== props.maxValue) {
-            setCount(count + 1)
-        }
-    }
-
-    const reset = () => {
-        setCount(props.startingValue)
-    }
+export const Counter = (props: StateType) => {
 
     return (
         <div className="counter">
             <div className="screen">
-                <p className={count === props.maxValue ? "error" : ""}>
-                    {count}
+                <p className={props.count === props.maxValue ? "error" : ""}>
+                    {!props.error ? props.count : "Press set"}
                 </p>
             </div>
             <div className="control">
-                <Button onClick={increment}
-                        disabled={count === props.maxValue}
+                <Button onClick={props.increment}
+                        disabled={props.count === props.maxValue || props.error}
                         title='inc'
                 />
 
-                <Button onClick={reset}
-                        disabled={count === props.startingValue}
+                <Button onClick={props.reset}
+                        disabled={props.count === props.minValue || props.error}
                         title='res'
                 />
             </div>

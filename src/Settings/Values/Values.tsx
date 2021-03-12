@@ -1,5 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
-import {store} from "../../Store/store";
+import React, {ChangeEvent} from "react";
 
 type ValuesPropsType = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -8,9 +7,6 @@ type ValuesPropsType = {
 }
 
 export const Values = (props: ValuesPropsType) => {
-    // const onClick = () => props.onClick()
-
-
     return (
         <span>
             {props.title}
