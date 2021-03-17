@@ -10,13 +10,12 @@ export type StateType = {
 
 export function App(props: StateType) {
     const [count, setCount] = useState<number>(props.minValue);
-
-    let [minValue, setMinValue] = useState<number>(props.minValue)
-    let [maxValue, setMaxValue] = useState<number>(props.maxValue)
-    let [error, setError] = useState<boolean>(false)
+    const [minValue, setMinValue] = useState<number>(props.minValue)
+    const [maxValue, setMaxValue] = useState<number>(props.maxValue)
+    const [error, setError] = useState<string>("")
 
     function increment() {
-        count !== maxValue ? setCount(count + 1) : setError(true)
+        count !== maxValue ? setCount(count + 1) : setError("")
     }
 
     function reset() {
@@ -27,11 +26,11 @@ export function App(props: StateType) {
         setMaxValue(max)
         setMinValue(min)
         setCount(min)
-        setError(false)
+        setError("")
     }
 
-    function setErrorMessage() {
-        setError(true)
+    function setErrorMessage(msg:string) {
+        setError(msg)
     }
 
     return (
@@ -39,9 +38,9 @@ export function App(props: StateType) {
             <Settings minValue={props.minValue}
                       maxValue={props.maxValue}
                       count={count}
-                      error={error}
                       setNewSettings={setNewSettings}
                       setErrorMessage={setErrorMessage}
+                      error={error}
             />
 
 

@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from "react";
+import s from "./Values.module.css"
 
 type ValuesPropsType = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
@@ -8,7 +9,7 @@ type ValuesPropsType = {
 
 export const Values = (props: ValuesPropsType) => {
     return (
-        <span>
+        <span className={s.values}>
             {props.title}
             <input type={"number"} onChange={props.onChange} value={props.value}/>
         </span>

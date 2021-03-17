@@ -8,7 +8,7 @@ export type StateType = {
     count: number
     increment: () => void
     reset: () => void
-    error: boolean
+    error: string
 }
 
 export const Counter = (props: StateType) => {
@@ -16,18 +16,18 @@ export const Counter = (props: StateType) => {
     return (
         <div className="counter">
             <div className="screen">
-                <p className={props.count === props.maxValue ? "error" : ""}>
-                    {!props.error ? props.count : "Press set"}
+                <p className={props.error !== '' ? "error" : ''}>
+                    {props.error === '' ? props.count : props.error}
                 </p>
             </div>
             <div className="control">
                 <Button onClick={props.increment}
-                        disabled={props.count === props.maxValue || props.error}
+                        disabled={props.count === props.maxValue || props.error==="Enter correct values"}
                         title='inc'
                 />
 
                 <Button onClick={props.reset}
-                        disabled={props.count === props.minValue || props.error}
+                        disabled={props.count === props.minValue || props.error==="Enter correct values"}
                         title='res'
                 />
             </div>
