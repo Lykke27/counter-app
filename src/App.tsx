@@ -29,7 +29,7 @@ export function App(props: StateType) {
         setError("")
     }
 
-    function setErrorMessage(msg:string) {
+    function setErrorMessage(msg: string) {
         setError(msg)
     }
 

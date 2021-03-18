@@ -16,21 +16,9 @@ export const Settings = (props: StateType) => {
     const [maxValue, setMaxValue] = useState(props.maxValue)
     const [minValue, setMinValue] = useState(props.minValue)
 
-    // function checkValue(maxValue: number, minValue: number, oldMaxValue: number, oldMinValue: number) {
-    //     if (maxValue <= minValue || maxValue > 10 || minValue < 0) {
-    //         props.setErrorMessage('incorrect value')
-    //     } else if (isNaN(minValue) || isNaN(maxValue)) {
-    //         props.setErrorMessage('enter value')
-    //     } else if (oldMaxValue != maxValue || oldMinValue != minValue) {
-    //         props.setErrorMessage('press \'set\'')
-    //     } else {
-    //         props.setErrorMessage('')
-    //     }
-    // }
-
     const onChangeForMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.setErrorMessage("Press set");
-        let newMaxValue = Number.parseInt(e.currentTarget.value)
+        let newMaxValue = parseInt(e.currentTarget.value)
         if (newMaxValue <= minValue) {
             props.setErrorMessage('incorrect value')
             setMaxValue(newMaxValue)
@@ -41,10 +29,9 @@ export const Settings = (props: StateType) => {
 
     const onChangeForMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.setErrorMessage("Press set");
-        let newMinValue = Number.parseInt(e.currentTarget.value)
-
+        let newMinValue = parseInt(e.currentTarget.value)
         if (newMinValue < 0 || newMinValue >= maxValue) {
-            props.setErrorMessage("Should be >= 0 and < max value");
+            props.setErrorMessage("incorrect value");
             setMinValue(newMinValue)
         } else {
             setMinValue(newMinValue)
@@ -58,7 +45,9 @@ export const Settings = (props: StateType) => {
     return (
         <div className="counter">
             <div className="screen">
-                <div className={maxValue <= minValue ? "error" : ""}>
+                <div
+                    // className={maxValue <= minValue ? "error" : ""} если хотим, чтобы values тоже подсвечивались
+                >
                     <Values title={"max value"} onChange={onChangeForMaxValue} value={maxValue}/>
                     <Values title={"start value"} onChange={onChangeForMinValue} value={minValue}/>
                 </div>
