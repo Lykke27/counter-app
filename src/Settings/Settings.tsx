@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {Button} from "../Button";
 import "../Counter/Counter.css"
 import {Values} from "./Values/Values";
@@ -13,16 +13,35 @@ export type StateType = {
 }
 
 export const Settings = (props: StateType) => {
+
+    useEffect(() => {
+        let LocalStorageMin = localStorage.getItem("minValue")
+        let LocalStorageMax = localStorage.getItem("maxValue")
+        if (LocalStorageMin) {
+            const startingMinValue = JSON.parse(LocalStorageMin)
+            setMinValue(startingMinValue)
+        }
+        if (LocalStorageMax) {
+            const startingMaxValue = JSON.parse(LocalStorageMax)
+            setMaxValue(startingMaxValue)
+        }
+    }, [])
+
     const [maxValue, setMaxValue] = useState(props.maxValue)
     const [minValue, setMinValue] = useState(props.minValue)
 
+    // useEffect(() => {
+    //     localStorage.setItem("minValue", JSON.stringify(minValue))
+    //     localStorage.setItem("maxValue", JSON.stringify(maxValue))
+    // }, [minValue, maxValue])
+
     const onChangeForMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setErrorMessage("Press set");
         let newMaxValue = parseInt(e.currentTarget.value)
         if (newMaxValue <= minValue) {
             props.setErrorMessage('incorrect value')
             setMaxValue(newMaxValue)
         } else if (newMaxValue > minValue) {
+            props.setErrorMessage("Press set");
             setMaxValue(newMaxValue)
         }
     }
@@ -40,14 +59,14 @@ export const Settings = (props: StateType) => {
 
     const setSettings = () => {
         props.setNewSettings(maxValue, minValue)
+        localStorage.setItem("minValue", JSON.stringify(minValue))
+        localStorage.setItem("maxValue", JSON.stringify(maxValue))
     }
 
     return (
         <div className="counter">
             <div className="screen">
-                <div
-                    // className={maxValue <= minValue ? "error" : ""} если хотим, чтобы values тоже подсвечивались
-                >
+                <div>
                     <Values title={"max value"} onChange={onChangeForMaxValue} value={maxValue}/>
                     <Values title={"start value"} onChange={onChangeForMinValue} value={minValue}/>
                 </div>

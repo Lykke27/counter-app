@@ -6,7 +6,7 @@ import {App} from "./App";
 ReactDOM.render(
     <React.StrictMode>
         <div className={"wrapper"}>
-            <App maxValue={10} minValue={0}/>
+            <App/>
         </div>
     </React.StrictMode>,
     document.getElementById('root')
