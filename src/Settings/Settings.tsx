@@ -30,11 +30,6 @@ export const Settings = (props: StateType) => {
     const [maxValue, setMaxValue] = useState(props.maxValue)
     const [minValue, setMinValue] = useState(props.minValue)
 
-    // useEffect(() => {
-    //     localStorage.setItem("minValue", JSON.stringify(minValue))
-    //     localStorage.setItem("maxValue", JSON.stringify(maxValue))
-    // }, [minValue, maxValue])
-
     const onChangeForMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         let newMaxValue = parseInt(e.currentTarget.value)
         if (newMaxValue <= minValue) {
